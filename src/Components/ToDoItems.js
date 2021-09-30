@@ -1,8 +1,8 @@
 import React from "react";
 import Styles from "./Main.module.css";
-import { TodoItem } from "./TodoItem";
+import { ToDo } from "./TodoItem";
 
-export function ToDoItems({ nonCompletedItems }) {
+export function ToDoItems({ nonCompletedItems, handleUpdateNameChange }) {
   return (
     <div className={Styles.section1}>
       <div className={Styles.sec1_title}>
@@ -21,8 +21,11 @@ export function ToDoItems({ nonCompletedItems }) {
                 return !todoItem.isCompleted;
               })
               .map((todoItem, index) => {
+                const updateItem = (tempInputText) =>
+                  handleUpdateNameChange(todoItem.id, tempInputText);
                 return (
-                  <TodoItem
+                  <ToDo
+                    updateItem={updateItem}
                     key={"todo-list-items-" + index}
                     serialNumber={index + 1}
                     todoItemName={todoItem.name}
