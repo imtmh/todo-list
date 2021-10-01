@@ -11,8 +11,8 @@ export function ToDoItems({ nonCompletedItems, handleUpdateNameChange }) {
 
       <div className={Styles.all_items}>
         {nonCompletedItems.length === 0 ? (
-          <div style={{ color: "red" }}>
-            No todo items to display, just add a todo item!"
+          <div style={{ color: "white", fontStyle: "italic" }}>
+            No todo items to display, just add a todo item!
           </div>
         ) : (
           <ul>

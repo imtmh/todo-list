@@ -20,7 +20,13 @@ export function CompletedToDoItemsSection({ completedItems }) {
         <span>Completed List</span>
       </div>
       <div className={Styles.cmp_items}>
-        <ul>{completedToDoItemsRender}</ul>
+        {completedItems.length === 0 ? (
+          <div style={{ color: "white", fontStyle: "italic" }}>
+            No completed items!
+          </div>
+        ) : (
+          <ul>{completedToDoItemsRender}</ul>
+        )}
       </div>
     </div>
   );
