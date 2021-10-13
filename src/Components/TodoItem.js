@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Styles from "./Main.module.css";
 
 export function ToDo(props) {
-  const { todoItemName, serialNumber, updateItem } = props;
+  const { todoItemName, serialNumber, handleUpdateNameChange, todoItemId, handleCompleteTodoItem } = props;
 
   const [isEditable, setIsEditable] = useState(false);
 
@@ -12,10 +12,11 @@ export function ToDo(props) {
   return (
     <li>
       <span>
-        <strong>{serialNumber}:</strong>
+        <strong>{serialNumber}: </strong>
         {isEditable ? (
           <input
             type="text"
+            className={Styles["todo-item-input-text"]}
             value={tempInputText}
             onChange={(e) => setTempInputText(e.target.value)}
           />
@@ -27,8 +28,7 @@ export function ToDo(props) {
         {isEditable ? (
           <button
             onClick={() => {
-              updateItem(tempInputText);
-
+              handleUpdateNameChange(todoItemId, tempInputText)
               setIsEditable(false);
             }}
           >
@@ -43,7 +43,11 @@ export function ToDo(props) {
             Edit
           </button>
         )}
-        <button>Complete</button>
+        <button
+          onClick={
+            () => handleCompleteTodoItem(todoItemId)
+          }
+        >Complete</button>
         <button>Delete</button>
       </div>
     </li>

@@ -24,14 +24,13 @@ let todoItems = [
 // const initialState = [];
 
 export default function Main() {
-  const [currentState, functionToUpdateCurrentState] = useState([]);
+  const [allTodoItems, functionToUpdateCurrentState] = useState([]);
 
   const [inputText, setInputText] = useState("");
 
   const onAddButtonClick = (e) => {
-    //1 way
     let tempState = [
-      ...currentState,
+      ...allTodoItems,
       {
         name: inputText,
         id: new Date().getTime(),
@@ -39,45 +38,58 @@ export default function Main() {
       },
     ];
 
-    // 2nd way
-    // let tempState2 = [...currentState];
-
-    // tempState2.push({
-    //   name: inputText,
-    //   id: 1,
-    //   isCompleted: false,
-    // });
-
-    //3nd way
-    // functionToUpdateCurrentState([
-    //   ...currentState,
-    //   { name: inputText, id: 1, isCompleted: false },
-    // ]);
-    // immutable objects nature strings
     functionToUpdateCurrentState(tempState);
 
     setInputText("");
   };
 
   function handleUpdateNameChange(idFromChild, nameFromChild) {
-    let updatedList = [];
-    for (let item of currentState) {
-      if (item.id === idFromChild) {
-        item.name = nameFromChild;
-      }
-      updatedList.push(item);
-    }
-    /*
-    let modifiedItem = currentState.map((item) => {
+    // let updatedList = [];
+    // for (let item of allTodoItems) {
+    //   if (item.id === idFromChild) {
+    //     item.name = nameFromChild;
+    //   }
+    //   updatedList.push(item);
+    // }
+
+    let updatedList2 = allTodoItems.map((item) => {
       if (item.id === idFromChild) {
         item.name = nameFromChild;
       }
       return item;
     });
 
-    */
+    let updatedList3 = allTodoItems.map((item) => {
+      return item.id === idFromChild ? { ...item, isCompleted: true } : item;
+    });
+    
+    let updatedList4 = allTodoItems.map((item) =>
+      item.id === idFromChild ? { ...item, isCompleted: true } : item
+    );
 
-    functionToUpdateCurrentState(updatedList);
+    functionToUpdateCurrentState(updatedList2);
+  }
+
+  function handleCompleteTodoItem(idOfItemToBeCompleted) {
+    // let updatedTodoItems = []
+
+    // for(let item of allTodoItems) {
+    //   if(item.id === idOfItemToBeCompleted) {
+    //       // mark matched item as completed
+    //       item.isCompleted = true;
+    //   }
+
+    //   updatedTodoItems.push(item)
+    // }
+
+    let updatedTodoItems2 = allTodoItems.map((item) => {
+      if (item.id === idOfItemToBeCompleted) {
+        item.isCompleted = true;
+      }
+      return item;
+    });
+
+    functionToUpdateCurrentState(updatedTodoItems2);
   }
 
   const onInputChange = (e) => {
@@ -106,11 +118,12 @@ export default function Main() {
             </button>
           </div>
           <ToDoItems
+            handleCompleteTodoItem={handleCompleteTodoItem}
             handleUpdateNameChange={handleUpdateNameChange}
-            nonCompletedItems={currentState.filter((item) => !item.isCompleted)}
+            nonCompletedItems={allTodoItems.filter((item) => !item.isCompleted)}
           />
           <CompletedToDoItemsSection
-            completedItems={currentState.filter((item) => item.isCompleted)}
+            completedItems={allTodoItems.filter((item) => item.isCompleted)}
           />
         </div>
       </div>

@@ -145,3 +145,14 @@ input:valid ~ .btn_add {
   cursor: pointer;
   box-shadow: 0 0 10px 0 var(--main-color);
 }
+
+
+.todo-item-input-text {
+  height: 29px;
+    font-size: 14px;
+    padding: 0 22px;
+    border-radius: 50px;
+    border: 0;
+    box-shadow: 0 0 20px var(--main-color);
+    margin-bottom: 10px;
+}

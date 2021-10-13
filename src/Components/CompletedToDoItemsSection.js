@@ -21,7 +21,7 @@ export function CompletedToDoItemsSection({ completedItems }) {
       </div>
       <div className={Styles.cmp_items}>
         {completedItems.length === 0 ? (
-          <div style={{ color: "white", fontStyle: "italic" }}>
+          <div style={{  fontStyle: "italic" }}>
             No completed items!
           </div>
         ) : (
