@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Styles from "./Main.module.css";
 
 export function ToDo(props) {
-  const { todoItemName, serialNumber, handleUpdateNameChange, todoItemId, handleCompleteTodoItem } = props;
+  const { todoItemName, serialNumber, handleUpdateNameChange, todoItemId, handleCompleteTodoItem , handleDeleteTodoItem} = props;
 
   const [isEditable, setIsEditable] = useState(false);
 
@@ -48,7 +48,7 @@ export function ToDo(props) {
             () => handleCompleteTodoItem(todoItemId)
           }
         >Complete</button>
-        <button>Delete</button>
+        <button onClick={() => handleDeleteTodoItem(todoItemId)}>Delete</button>
       </div>
     </li>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import Styles from "./Main.module.css";
 import { ToDo } from "./TodoItem";
 
-export function ToDoItems({ nonCompletedItems, handleUpdateNameChange, handleCompleteTodoItem }) {
+export function ToDoItems({ nonCompletedItems, handleUpdateNameChange, handleCompleteTodoItem, handleDeleteTodoItem}) {
   return (
     <div className={Styles.section1}>
       <div className={Styles.sec1_title}>
@@ -23,7 +23,8 @@ export function ToDoItems({ nonCompletedItems, handleUpdateNameChange, handleCom
               .map((todoItem, index) => {
                 return (
                   <ToDo 
-                  handleCompleteTodoItem={handleCompleteTodoItem}
+                  handleDeleteTodoItem={handleDeleteTodoItem}
+                    handleCompleteTodoItem={handleCompleteTodoItem}
                     todoItemId={todoItem.id}
                     handleUpdateNameChange={handleUpdateNameChange}
                     key={"todo-list-items-" + index}
